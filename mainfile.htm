@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Comic Sans MS', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      color: #333;
+      transition: background-color 0.5s ease, color 0.5s ease;
+    }
+
+    body.dark-mode {
+      background-color: #333;
+      color: #fff;
+    }
+
+    ::-webkit-scrollbar {
+      display: none;
+    }
+
+    #main-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    #heading {
+      font-size: 36px;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    #cards-container {
+      display: flex;
+      gap: 80px;
+    }
+
+    .card {
+      position: relative;
+      width: 300px;
+      height: 450px;
+      overflow: hidden;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.5s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.2);
+    }
+
+    .card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .card-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 10px;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      border-radius: 0 0 8px 8px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .card:hover .card-content {
+      opacity: 1;
+    }
+
+    .dark-mode-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      align-items: center;
+      color: #ff0000;
+    }
+
+    .dark-mode-toggle label {
+      margin-right: 10px;
+    }
+
+    .dark-mode-toggle input {
+      cursor: pointer;
+    }
+  </style>
+  <title>Chandan Singh Entertainment</title>
+</head>
+
+<body>
+
+  <div id="main-container">
+    <h1 id="heading">Chandan Singh Entertainment</h1>
+
+    <div id="cards-container">
+      <div class="card" onclick="openLocalSite('site1')">
+        <img src="image/music.jpg" alt="Option 1">
+        <div class="card-content">
+          <h2>Songs</h2>
+          <p>Song to make you feel good❤️❤️</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="openLocalSite('site2')">
+        <img src="image/musicVideo.jpg" alt="Option 2">
+        <div class="card-content">
+          <h2>Music Video</h2>
+          <p>Option 2 Description</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="openLocalSite('site3')">
+        <img src="image/movies.jpg" alt="Option 3">
+        <div class="card-content">
+          <h2>Movies</h2>
+          <p>Option 3 Description</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dark-mode-toggle">
+    <label for="dark-mode">Dark Mode:</label>
+    <input type="checkbox" id="dark-mode" onchange="toggleDarkMode()">
+  </div>
+
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+
+    function openLocalSite(pageName) {
+      if (pageName === 'site1') {
+        window.location.href = 'SongPlayer/MusicPlayer.html';
+      } else if (pageName === 'site2') {
+        window.location.href = 'VideoPlayerSongs/MusicVideoPlayerSource.html';
+      } else if (pageName === 'site3') {
+        window.location.href = 'VideoPlayerMovies/MoviesVideoPlayerSource.html';
+      }
+    }
+    document.addEventListener("DOMContentLoaded", function () {
+
+
+    // Function to toggle dark mode for the entire site
+    window.toggleDarkModeForEntireSite = function () {
+        const isDarkMode = document.body.classList.contains('dark-mode');
+        document.body.classList.toggle('dark-mode', !isDarkMode);
+
+        // Save user preference in localStorage if needed
+        localStorage.setItem('darkMode', !isDarkMode);
+    };
+
+    // Check localStorage for dark mode preference
+    const savedDarkMode = localStorage.getItem('darkMode');
+    if (savedDarkMode !== null) {
+        document.body.classList.toggle('dark-mode', savedDarkMode === 'true');
+    }
+});
+
+  </script>
+
+</body>
+
+</html>
